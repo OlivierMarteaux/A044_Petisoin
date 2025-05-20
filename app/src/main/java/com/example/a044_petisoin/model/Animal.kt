@@ -7,12 +7,11 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "Animal")
 data class Animal (
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @PrimaryKey(autoGenerate = true) val id: Int = 1,
     val type: AnimalType = AnimalType.DOG,
     val name: String? = null,
     val height: Int = 0,
     val weight: Int = 0,
     val age: Int = 0,
     @Embedded val adress: Address = Address(),
-    val vaccine: Vaccine = Vaccine(),
 )
