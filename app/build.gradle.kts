@@ -49,6 +49,9 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -64,7 +67,7 @@ dependencies {
 
     // hilt
     implementation(libs.hilt)
-    implementation(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
 
     // room
     implementation(libs.androidx.room.runtime)
