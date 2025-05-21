@@ -7,6 +7,7 @@ import androidx.room.Query
 import androidx.room.Update
 import androidx.room.Upsert
 import com.example.a044_petisoin.model.Animal
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface AnimalDao {
@@ -15,10 +16,11 @@ interface AnimalDao {
     @Update
     suspend fun updateAnimal(animal: Animal)
     @Delete
-    suspend fun deleteAnimalById(animal: Animal)
+    suspend fun deleteAnimal(animal: Animal)
 
     @Query("SELECT * FROM Animal WHERE id = :id")
     suspend fun getAnimalById(id: Int): Animal?
     @Query("SELECT * FROM Animal")
-    suspend fun getAllAnimals(): List<Animal>
+    // no suspend function  if flow return type
+    fun getAllAnimals(): Flow<List<Animal>>
 }

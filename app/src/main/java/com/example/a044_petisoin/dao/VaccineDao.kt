@@ -7,6 +7,7 @@ import androidx.room.Query
 import androidx.room.Update
 import androidx.room.Upsert
 import com.example.a044_petisoin.model.Vaccine
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface VaccineDao {
@@ -20,5 +21,6 @@ interface VaccineDao {
     @Query("SELECT * FROM Vaccine WHERE id = :id")
     suspend fun getVaccineById(id: Int): Vaccine?
     @Query("SELECT * FROM Vaccine")
-    suspend fun getAllVaccines(): List<Vaccine>
+    // no suspend function  if flow return type
+    fun getAllVaccines(): Flow<List<Vaccine>>
 }

@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "bae11830ccb39a7bf2f307dab9834b1c",
+    "identityHash": "04bebada9d1a54fed104551b0e98c7aa",
     "entities": [
       {
         "tableName": "Animal",
@@ -126,7 +126,7 @@
       },
       {
         "tableName": "Vaccine",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `dateInjection` INTEGER NOT NULL, `nom` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `dateInjection` INTEGER NOT NULL, `nom` TEXT NOT NULL, `animalId` INTEGER NOT NULL, FOREIGN KEY(`animalId`) REFERENCES `Animal`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
@@ -145,6 +145,12 @@
             "columnName": "nom",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "animalId",
+            "columnName": "animalId",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -152,12 +158,25 @@
           "columnNames": [
             "id"
           ]
-        }
+        },
+        "foreignKeys": [
+          {
+            "table": "Animal",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "animalId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'bae11830ccb39a7bf2f307dab9834b1c')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '04bebada9d1a54fed104551b0e98c7aa')"
     ]
   }
 }

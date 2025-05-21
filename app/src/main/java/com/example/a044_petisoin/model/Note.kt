@@ -17,7 +17,7 @@ import java.util.Date
     ]
 )
 data class Note(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @PrimaryKey(autoGenerate = true) val id: Int = 1,
     val title: String = "",
     val content: String = "",
     val creationDate: Date = Date(),

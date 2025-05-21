@@ -7,6 +7,7 @@ import androidx.room.Query
 import androidx.room.Update
 import androidx.room.Upsert
 import com.example.a044_petisoin.model.Note
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface NoteDao {
@@ -20,5 +21,6 @@ interface NoteDao {
     @Query("SELECT * FROM Note WHERE id = :id")
     suspend fun getNoteById(id: Int): Note?
     @Query("SELECT * FROM Note")
-    suspend fun getAllNotes(): List<Note>
+    // no suspend function  if flow return type
+    fun getAllNotes(): Flow<List<Note>>
 }
