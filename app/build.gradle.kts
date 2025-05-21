@@ -3,12 +3,12 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.room)
+    alias(libs.plugins.hilt)
 }
 
 android {
     namespace = "com.example.a044_petisoin"
     compileSdk = 35
-
 
     room {
         // Enables exporting database schemas into JSON files in the given directory.
@@ -29,7 +29,6 @@ android {
             // Generate Kotlin source files instead of Java. Requires KSP. Default value is true as of version 2.7.0.
             arg("room.generateKotlin", "true")
         }
-
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -60,7 +59,14 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
-    // ROOM
+    // viewmodelscope coroutines
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+
+    // hilt
+    implementation(libs.hilt)
+    implementation(libs.hilt.compiler)
+
+    // room
     implementation(libs.androidx.room.runtime)
     // If this project uses any Kotlin source, use Kotlin Symbol Processing (KSP)
     ksp(libs.androidx.room.compiler)
